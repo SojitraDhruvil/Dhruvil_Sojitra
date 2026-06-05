@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dhruvil Sojitra — Software Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,185 +13,244 @@
   <div id="cursor-dot"></div>
   <div id="cursor-ring"></div>
 
-  <!-- Particle canvas -->
+  <!-- Ambient light glow tracked by cursor -->
+  <div id="ambient-light"></div>
+
+  <!-- Particle background canvas -->
   <canvas id="particle-canvas"></canvas>
 
-  <nav>
-    <a href="#" class="nav-logo">DS<span>.</span></a>
-    <div class="nav-links">
-      <a href="#experience">Work</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <main>
-
-    <div class="hero">
-      <div class="hero-tag">Available for opportunities</div>
-      <h1>Dhruvil<br><em>Sojitra</em></h1>
-      <p class="hero-desc">
-        Software engineer with a focus on backend systems, REST APIs, and real-time applications.
-        Currently completing M.Tech in Data Science at IIIT Vadodara.
-      </p>
-      <div class="hero-links">
-        <a href="mailto:dhruvilsojitra98799@gmail.com" class="btn btn-primary">Get in touch</a>
-        <a href="https://github.com/" target="_blank" class="btn btn-outline">GitHub ↗</a>
-        <a href="https://linkedin.com/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
-      </div>
-    </div>
-
-    <section id="about">
-      <div class="section-label">About</div>
-      <p class="about-text">
-        I build <strong>scalable backend systems</strong> and clean APIs. My experience spans Node.js microservices, real-time communication with Socket.IO, and data engineering pipelines. I also enjoy machine learning — from CV models to exploratory analysis. Currently based in <strong>Gujarat, India</strong>, open to remote and on-site roles.
-      </p>
-    </section>
-
-    <section id="experience">
-      <div class="section-label">Experience</div>
-
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="exp-company">PulPIt Mobility</span>
-          <span class="exp-date">Aug 2024 – Sept 2025</span>
+  <div class="container">
+    <!-- Left Column (Sticky Sidebar Header/Hero) -->
+    <header class="left-col">
+      <div>
+        <a href="#" class="logo">DS<span>.</span></a>
+        
+        <div class="hero-info">
+          <h1>Dhruvil Sojitra</h1>
+          <h2>Software Engineer</h2>
+          <div class="hero-tag">Available for opportunities</div>
+          <p class="hero-desc">
+            M.Tech Data Science student at IIIT Vadodara specializing in building highly scalable backend systems, APIs, and real-time interactive experiences.
+          </p>
         </div>
-        <div class="exp-role">Software Engineer Intern · Gandhinagar</div>
-        <ul class="exp-bullets">
-          <li>Led development of a driver contract admin portal using Node.js with secure, scalable REST APIs</li>
-          <li>Implemented OTP-based authentication with JWT for controlled API access</li>
-          <li>Automated data extraction via a Selenium-based web scraper, boosting operational efficiency</li>
-          <li>Engineered backend for Urban Streets — posts, ad campaigns, real-time chat</li>
-          <li>Built a scalable Mediasoup-based multi-user livestreaming module</li>
-        </ul>
+
+        <nav class="nav-links">
+          <a href="#about" class="nav-link active">
+            <span class="nav-line"></span>
+            <span class="nav-text">About</span>
+          </a>
+          <a href="#experience" class="nav-link">
+            <span class="nav-line"></span>
+            <span class="nav-text">Experience</span>
+          </a>
+          <a href="#projects" class="nav-link">
+            <span class="nav-line"></span>
+            <span class="nav-text">Projects</span>
+          </a>
+          <a href="#skills" class="nav-link">
+            <span class="nav-line"></span>
+            <span class="nav-text">Skills</span>
+          </a>
+          <a href="#contact" class="nav-link">
+            <span class="nav-line"></span>
+            <span class="nav-text">Contact</span>
+          </a>
+        </nav>
       </div>
 
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="exp-company">SoftRefine Technology</span>
-          <span class="exp-date">Jan 2023 – Jun 2023</span>
+      <div class="left-footer">
+        <div class="social-links">
+          <a href="https://github.com/" target="_blank" aria-label="GitHub">GitHub</a>
+          <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+          <a href="mailto:dhruvilsojitra98799@gmail.com" aria-label="Email">Email</a>
         </div>
-        <div class="exp-role">Software Engineer Intern · Ahmedabad</div>
-        <ul class="exp-bullets">
-          <li>Designed and developed scalable server-side applications with robust REST APIs</li>
-          <li>Improved system reliability using Node.js, MongoDB, Express.js, and Git</li>
-        </ul>
+        <p class="copyright">Dhruvil Sojitra &copy; 2026</p>
       </div>
-    </section>
+    </header>
 
-    <section id="projects">
-      <div class="section-label">Projects</div>
-      <div class="projects-grid">
-        <a class="project-card" href="#" target="_blank">
-          <div class="project-name">Real-Time Sign Language Detection <span class="project-arrow">↗</span></div>
-          <p class="project-desc">Real-time gesture recognition using KNN + MediaPipe for accurate hand tracking and classification.</p>
-          <div class="project-stack">
-            <span class="tag">Python</span><span class="tag">MediaPipe</span><span class="tag">scikit-learn</span><span class="tag">KNN</span>
-          </div>
-        </a>
-        <a class="project-card" href="#" target="_blank">
-          <div class="project-name">COVID-19 EDA <span class="project-arrow">↗</span></div>
-          <p class="project-desc">Comprehensive exploratory data analysis identifying trends, correlations, and data-driven insights on pandemic datasets.</p>
-          <div class="project-stack">
-            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span><span class="tag">Jupyter</span>
-          </div>
-        </a>
-        <a class="project-card" href="#" target="_blank">
-          <div class="project-name">2048 Game <span class="project-arrow">↗</span></div>
-          <p class="project-desc">Classic 2048 game with optimized game logic, state management, and interactive GUI built with Tkinter.</p>
-          <div class="project-stack">
-            <span class="tag">Python</span><span class="tag">Tkinter</span>
-          </div>
-        </a>
-      </div>
-    </section>
+    <!-- Right Column (Scrollable Main Content) -->
+    <main class="right-col">
+      <section id="about">
+        <div class="section-label">About</div>
+        <div class="about-text">
+          <p>
+            I build <strong>scalable backend systems</strong> and clean APIs. My experience spans Node.js microservices, real-time communication with Socket.IO, and data engineering pipelines.
+          </p>
+          <p>
+            I also enjoy machine learning — from computer vision models to exploratory analysis. Currently based in <strong>Gujarat, India</strong>, and open to remote and on-site roles.
+          </p>
+        </div>
+      </section>
 
-    <section id="skills">
-      <div class="section-label">Skills</div>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <div class="skill-group-name">Languages</div>
-          <div class="skill-tags">
-            <span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Python</span><span class="skill-tag">Java</span><span class="skill-tag">C</span>
+      <section id="experience">
+        <div class="section-label">Experience</div>
+        
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">PulPIt Mobility</span>
+            <span class="exp-date">Aug 2024 – Sept 2025</span>
           </div>
+          <div class="exp-role">Software Engineer Intern · Gandhinagar</div>
+          <ul class="exp-bullets">
+            <li>Led development of a driver contract admin portal using Node.js with secure, scalable REST APIs</li>
+            <li>Implemented OTP-based authentication with JWT for controlled API access</li>
+            <li>Automated data extraction via a Selenium-based web scraper, boosting operational efficiency</li>
+            <li>Engineered backend for Urban Streets — posts, ad campaigns, real-time chat</li>
+            <li>Built a scalable Mediasoup-based multi-user livestreaming module</li>
+          </ul>
         </div>
-        <div class="skill-group">
-          <div class="skill-group-name">Backend</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span><span class="skill-tag">Flask</span><span class="skill-tag">Socket.IO</span><span class="skill-tag">JWT</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-name">Frontend</div>
-          <div class="skill-tags">
-            <span class="skill-tag">React.js</span><span class="skill-tag">HTML</span><span class="skill-tag">CSS</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-name">Databases</div>
-          <div class="skill-tags">
-            <span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">SQL</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-name">Data & ML</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Pandas</span><span class="skill-tag">NumPy</span><span class="skill-tag">PyTorch</span><span class="skill-tag">scikit-learn</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-name">Tools</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Git</span><span class="skill-tag">Linux</span><span class="skill-tag">Selenium</span><span class="skill-tag">Bash</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="education">
-      <div class="section-label">Education</div>
-      <div class="edu-item">
-        <div class="edu-dot"></div>
-        <div>
-          <div class="edu-school">IIIT Vadodara</div>
-          <div class="edu-degree">M.Tech — Computer Science & Engineering (Data Science) · CPI 7.32</div>
-          <div class="edu-date">Sept 2023 – Aug 2025</div>
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">SoftRefine Technology</span>
+            <span class="exp-date">Jan 2023 – Jun 2023</span>
+          </div>
+          <div class="exp-role">Software Engineer Intern · Ahmedabad</div>
+          <ul class="exp-bullets">
+            <li>Designed and developed scalable server-side applications with robust REST APIs</li>
+            <li>Improved system reliability using Node.js, MongoDB, Express.js, and Git</li>
+          </ul>
         </div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-dot"></div>
-        <div>
-          <div class="edu-school">Gujarat Technological University</div>
-          <div class="edu-degree">B.E. — Computer Engineering · CGPA 8.01 (Distinction)</div>
-          <div class="edu-date">May 2019 – May 2023</div>
+      </section>
+
+      <section id="projects">
+        <div class="section-label">Projects</div>
+        <div class="projects-grid">
+          <a class="project-card" href="#" target="_blank">
+            <div class="project-name">
+              <span>Real-Time Sign Language Detection</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p class="project-desc">Real-time gesture recognition using KNN + MediaPipe for hand tracking and classification.</p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">MediaPipe</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">KNN</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="#" target="_blank">
+            <div class="project-name">
+              <span>COVID-19 EDA</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p class="project-desc">Comprehensive exploratory data analysis identifying trends, correlations, and insights on pandemic datasets.</p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Seaborn</span>
+              <span class="tag">Jupyter</span>
+            </div>
+          </a>
+
+          <a class="project-card" href="#" target="_blank">
+            <div class="project-name">
+              <span>2048 Game</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <p class="project-desc">Classic 2048 game with optimized game logic, state management, and interactive GUI built with Tkinter.</p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">Tkinter</span>
+            </div>
+          </a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="contact">
-      <div class="section-label">Contact</div>
-      <a class="contact-row" href="mailto:dhruvilsojitra98799@gmail.com">
-        <span class="contact-label">Email</span>
-        <span class="contact-value">dhruvilsojitra98799@gmail.com</span>
-      </a>
-      <a class="contact-row" href="tel:+919426696200">
-        <span class="contact-label">Phone</span>
-        <span class="contact-value">+91 94266 96200</span>
-      </a>
-      <a class="contact-row" href="https://linkedin.com/" target="_blank">
-        <span class="contact-label">LinkedIn</span>
-        <span class="contact-value">linkedin.com/in/dhruvilsojitra</span>
-      </a>
-      <a class="contact-row" href="https://leetcode.com/u/dhruvilsojitra/" target="_blank">
-        <span class="contact-label">LeetCode</span>
-        <span class="contact-value">300+ problems solved</span>
-      </a>
-    </section>
+      <section id="skills">
+        <div class="section-label">Skills</div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-group-name">Languages</div>
+            <div class="skill-tags">
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">C</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Backend</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">Flask</span>
+              <span class="skill-tag">Socket.IO</span>
+              <span class="skill-tag">JWT</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Frontend</div>
+            <div class="skill-tags">
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">HTML</span>
+              <span class="skill-tag">CSS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Databases</div>
+            <div class="skill-tags">
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">SQL</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Data & ML</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Pandas</span>
+              <span class="skill-tag">NumPy</span>
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">scikit-learn</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-name">Tools</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Selenium</span>
+              <span class="skill-tag">Bash</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  </main>
+      <section id="contact">
+        <div class="section-label">Contact</div>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:dhruvilsojitra98799@gmail.com">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">dhruvilsojitra98799@gmail.com</span>
+          </a>
+          <a class="contact-card" href="tel:+919426696200">
+            <span class="contact-label">Phone</span>
+            <span class="contact-value">+91 94266 96200</span>
+          </a>
+          <a class="contact-card" href="https://linkedin.com/" target="_blank">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">linkedin.com/in/dhruvilsojitra</span>
+          </a>
+          <a class="contact-card" href="https://leetcode.com/u/dhruvilsojitra/" target="_blank">
+            <span class="contact-label">LeetCode</span>
+            <span class="contact-value">300+ problems solved</span>
+          </a>
+        </div>
+      </section>
 
-  <footer>Dhruvil Sojitra · 2025</footer>
+      <!-- Mobile-only Footer -->
+      <footer class="mobile-footer">
+        <div class="social-links">
+          <a href="https://github.com/" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+          <a href="mailto:dhruvilsojitra98799@gmail.com">Email</a>
+        </div>
+        <p class="copyright">Dhruvil Sojitra &copy; 2026</p>
+      </footer>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
