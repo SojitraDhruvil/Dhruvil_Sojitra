@@ -22,7 +22,7 @@ function animateCursor() {
 animateCursor();
 
 // Custom cursor hover states
-const hoverTargets = 'a, button, .skill-tag, .project-card, .exp-item, .edu-item, .contact-card';
+const hoverTargets = 'a, button, .skill-tag, .project-card, .exp-item, .edu-item, .contact-row';
 document.querySelectorAll(hoverTargets).forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));

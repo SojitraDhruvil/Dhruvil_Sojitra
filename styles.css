@@ -347,24 +347,21 @@ section {
 /* ─── EXPERIENCE ─── */
 .exp-item {
   position: relative;
-  padding: 2rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .exp-item:last-child {
-  margin-bottom: 0;
+  border-bottom: none;
 }
 
 .exp-item:hover {
-  transform: translateY(-2px);
-  border-color: rgba(21, 128, 61, 0.15);
-  box-shadow: 0 10px 30px rgba(21, 128, 61, 0.04);
-  background: var(--accent-light);
+  padding-left: 12px;
+}
+
+.exp-item:hover .exp-company {
+  color: var(--accent);
 }
 
 .exp-header {
@@ -383,10 +380,6 @@ section {
   transition: color 0.2s;
 }
 
-.exp-item:hover .exp-company {
-  color: var(--accent);
-}
-
 .exp-date {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
@@ -394,7 +387,7 @@ section {
 }
 
 .exp-role {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 500;
   color: var(--muted);
   margin-bottom: 1rem;
@@ -630,24 +623,21 @@ section {
 /* ─── EDUCATION ─── */
 .edu-item {
   position: relative;
-  padding: 2rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .edu-item:last-child {
-  margin-bottom: 0;
+  border-bottom: none;
 }
 
 .edu-item:hover {
-  transform: translateY(-2px);
-  border-color: rgba(21, 128, 61, 0.15);
-  box-shadow: 0 10px 30px rgba(21, 128, 61, 0.04);
-  background: var(--accent-light);
+  padding-left: 12px;
+}
+
+.edu-item:hover .edu-school {
+  color: var(--accent);
 }
 
 .edu-header {
@@ -666,10 +656,6 @@ section {
   transition: color 0.2s;
 }
 
-.edu-item:hover .edu-school {
-  color: var(--accent);
-}
-
 .edu-date {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
@@ -684,51 +670,46 @@ section {
 
 
 /* ─── CONTACT ─── */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.contact-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
+.contact-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
-.contact-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(21, 128, 61, 0.2);
-  box-shadow: 0 8px 25px rgba(21, 128, 61, 0.04);
-  background: var(--accent-light);
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.contact-row:last-child {
+  border-bottom: none;
+}
+
+.contact-row:hover {
+  padding-left: 12px;
+  color: var(--accent);
 }
 
 .contact-label {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 11px;
   color: var(--muted);
-  opacity: 0.8;
+  width: 100px;
+  flex-shrink: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .contact-value {
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 500;
   word-break: break-all;
   transition: color 0.2s;
-}
-
-.contact-card:hover .contact-value {
-  color: var(--accent);
 }
 
 
@@ -784,8 +765,7 @@ section {
     gap: 1.5rem;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .contact-row {
+    padding: 1rem 0;
   }
 }
