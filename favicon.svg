@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .logo-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      fill: #111827;
+    }
+    .logo-dot {
+      fill: #15803d;
+    }
+    @media (prefers-color-scheme: dark) {
+      .logo-text {
+        fill: #f3f4f6;
+      }
+      .logo-dot {
+        fill: #22c55e;
+      }
+    }
+  </style>
+  <text x="0" y="22" class="logo-text">DS</text>
+  <circle cx="28" cy="20" r="3.5" class="logo-dot" />
+</svg>
