@@ -65,7 +65,21 @@ if (canvas) {
   resize();
   window.addEventListener('resize', resize);
 
-  const ACCENT = { r: 21, g: 128, b: 61 }; // Matching --accent (#15803d)
+  let ACCENT = { r: 21, g: 128, b: 61 }; // Matching --accent (#15803d)
+
+  window.updateParticleAccent = function() {
+    const style = getComputedStyle(document.documentElement);
+    const rgbStr = style.getPropertyValue('--accent-rgb').trim();
+    if (rgbStr) {
+      const parts = rgbStr.split(',').map(Number);
+      if (parts.length === 3) {
+        ACCENT.r = parts[0];
+        ACCENT.g = parts[1];
+        ACCENT.b = parts[2];
+      }
+    }
+  };
+  window.updateParticleAccent();
 
   class Particle {
     constructor() { this.reset(true); }
@@ -172,3 +186,16 @@ sections.forEach(s => {
   s.style.transition = 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
   revealObserver.observe(s);
 });
+
+// ─── THEME TOGGLE ───
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    if (typeof window.updateParticleAccent === 'function') {
+      window.updateParticleAccent();
+    }
+  });
+}
+
