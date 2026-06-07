@@ -457,6 +457,12 @@ section {
   border-radius: 12px;
   overflow: hidden;
   background: var(--border);
+  transition: padding-top 0.25s ease, margin-top 0.25s ease;
+}
+
+.projects-grid:has(.project-card:hover) {
+  padding-top: 2px;
+  margin-top: -2px;
 }
 
 .project-card {
