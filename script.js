@@ -85,14 +85,19 @@ if (canvas) {
     constructor() { this.reset(true); }
     reset(init) {
       this.x = Math.random() * W;
-      this.y = init ? Math.random() * H : H + 10;
+      // Initialize with a gradient (more bubbles at the bottom)
+      this.y = init ? H * Math.pow(Math.random(), 0.6) : H + 10;
       this.size = Math.random() * 2.5 + 0.8;
       this.speedX = (Math.random() - 0.5) * 0.3;
       this.speedY = -(Math.random() * 0.4 + 0.15);
-      this.alpha = Math.random() * 0.3 + 0.05; // Fainter particles
+      this.alpha = Math.random() * 0.3 + 0.05; // Soft base alpha
       this.ox = this.x; this.oy = this.y;
       this.life = 0;
-      this.maxLife = Math.random() * 300 + 200;
+      
+      // Calculate maxLife based on screen height and speed so particles can reach the top,
+      // but some die earlier to create a density gradient.
+      const travelTime = H / Math.abs(this.speedY);
+      this.maxLife = travelTime * (Math.random() * 1.2 + 0.2);
     }
     update(mouseX, mouseY) {
       this.life++;
@@ -113,12 +118,15 @@ if (canvas) {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${this.alpha})`;
+      // Fade out alpha as it goes higher (lower y coordinate)
+      const progress = Math.max(0, Math.min(1, this.y / H));
+      const currentAlpha = this.alpha * (0.2 + 0.8 * progress);
+      ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${currentAlpha})`;
       ctx.fill();
     }
   }
 
-  for (let i = 0; i < 80; i++) particles.push(new Particle());
+  for (let i = 0; i < 100; i++) particles.push(new Particle());
 
   let pmx = -999, pmy = -999;
   document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
@@ -133,8 +141,11 @@ if (canvas) {
         const dy = particles[i].y - particles[j].y;
         const d = Math.sqrt(dx * dx + dy * dy);
         if (d < 90) {
+          const avgY = (particles[i].y + particles[j].y) / 2;
+          const progress = Math.max(0, Math.min(1, avgY / H));
+          const lineAlpha = (1 - d/90) * 0.04 * (0.2 + 0.8 * progress);
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${(1 - d/90) * 0.04})`; // Subtler connection lines
+          ctx.strokeStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${lineAlpha})`;
           ctx.lineWidth = 0.5;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
