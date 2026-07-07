@@ -449,15 +449,25 @@ section {
 
 
 /* ─── PROJECTS ─── */
+/* ─── PROJECTS ─── */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-columns: minmax(320px, 1fr);
+  grid-auto-flow: column;
   gap: 1px;
   border: 1px solid var(--border);
   border-radius: 12px;
-  overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   background: var(--border);
   transition: padding-top 0.25s ease, margin-top 0.25s ease;
+}
+
+.projects-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .projects-grid:has(.project-card:hover) {
@@ -474,6 +484,7 @@ section {
   position: relative;
   transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
   overflow: hidden;
+  scroll-snap-align: start;
 }
 
 .project-card::before {
