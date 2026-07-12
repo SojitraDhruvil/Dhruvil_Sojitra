@@ -210,3 +210,112 @@ if (themeToggle) {
   });
 }
 
+// ─── PROJECTS AUTO-SCROLL & DRAG ───
+(function () {
+  const grid = document.querySelector('.projects-grid');
+  if (!grid) return;
+
+  // Clone all children of projects-grid for infinite circular scrolling
+  const children = Array.from(grid.children);
+  children.forEach(child => {
+    const clone = child.cloneNode(true);
+    grid.appendChild(clone);
+  });
+
+  let isPaused = false;
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
+  let moved = false;
+  let scrollSpeed = 0.6; // Speed in pixels per frame (smooth slow scroll)
+  let currentScroll = 0; // Float variable to track subpixel positions precisely
+
+  // Disable scroll snapping dynamically for fluid continuous scrolling
+  grid.style.scrollSnapType = 'none';
+
+  const handleScrollWrap = () => {
+    // Exact loop point matches half the scrollable content plus gap offset
+    const loopPoint = (grid.scrollWidth + 1) / 2;
+    if (grid.scrollLeft >= loopPoint) {
+      grid.scrollLeft -= loopPoint;
+      currentScroll = grid.scrollLeft;
+    } else if (grid.scrollLeft < 0) {
+      grid.scrollLeft += loopPoint;
+      currentScroll = grid.scrollLeft;
+    }
+  };
+
+  // Continuous animation frame loop
+  const updateScroll = () => {
+    if (!isPaused && !isDown) {
+      currentScroll += scrollSpeed;
+      handleScrollWrap();
+      grid.scrollLeft = Math.round(currentScroll);
+    }
+    requestAnimationFrame(updateScroll);
+  };
+  
+  // Start the continuous scrolling loop
+  requestAnimationFrame(updateScroll);
+
+  // Monitor scroll for manual wraps (trackpad / mouse wheel) and keep float in sync
+  grid.addEventListener('scroll', () => {
+    handleScrollWrap();
+    currentScroll = grid.scrollLeft;
+  });
+
+  // Pause on hover
+  grid.addEventListener('mouseenter', () => {
+    isPaused = true;
+  });
+
+  grid.addEventListener('mouseleave', () => {
+    isPaused = false;
+  });
+
+  // Pause on touch (mobile devices)
+  grid.addEventListener('touchstart', () => {
+    isPaused = true;
+  }, { passive: true });
+
+  grid.addEventListener('touchend', () => {
+    isPaused = false;
+  }, { passive: true });
+
+  // Drag-to-Scroll logic (desktop mouse dragging)
+  grid.addEventListener('mousedown', (e) => {
+    isDown = true;
+    grid.style.scrollBehavior = 'auto'; // Instant drag response
+    startX = e.pageX - grid.offsetLeft;
+    scrollLeft = grid.scrollLeft;
+    moved = false;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+  });
+
+  grid.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - grid.offsetLeft;
+    const walk = (x - startX) * 1.5; // Drag speed multiplier
+    if (Math.abs(walk) > 7) {
+      moved = true;
+    }
+    grid.scrollLeft = scrollLeft - walk;
+    handleScrollWrap();
+    currentScroll = grid.scrollLeft;
+  });
+
+  // Prevent link navigation if drag occurred
+  grid.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (moved) {
+        e.preventDefault();
+      }
+    });
+  });
+})();
+

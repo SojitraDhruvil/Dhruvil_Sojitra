@@ -464,6 +464,11 @@ section {
   scrollbar-width: none;
   background: var(--border);
   transition: padding-top 0.25s ease, margin-top 0.25s ease;
+  cursor: grab;
+}
+
+.projects-grid:active {
+  cursor: grabbing;
 }
 
 .projects-grid::-webkit-scrollbar {
